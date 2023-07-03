@@ -97,8 +97,6 @@ class MainActivity : AppCompatActivity() {
 
         buySellStock(intArrayOf(7,1,5,3,6,4))
 
-        //todo MG ==================================================================================
-
         //third max no.
         thirdMaxNo(intArrayOf(4,6,7,2,3,5,6))
 
@@ -159,7 +157,32 @@ class MainActivity : AppCompatActivity() {
         //optimal = O(N)
         findSubArraysOpt(intArrayOf(6, 3, -1, -3, 4, -2, 2, 4, 6, -12, -7))
 
-        //
+        //https://leetcode.com/problems/sort-colors/
+        sortColor(intArrayOf(2,0,2,1,1,0))
+    }
+
+    fun sortColor(nums: IntArray): Unit {
+        val map = hashMapOf<Int, Int>()
+
+        for(item in nums) {
+            val value = map.get(item) ?: 0
+            map[item] = value + 1
+        }
+
+        println(map)
+
+        var i = 0
+        var j = 0
+
+        while(i < nums.size) {
+            var counter = map[j] ?: 0
+
+            for(k in i..(i + counter) - 1) {
+                nums[i] = j
+                i++
+            }
+            j++
+        }
     }
 
     fun findSubArraysOpt(arr: IntArray) {
